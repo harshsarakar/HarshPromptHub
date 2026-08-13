@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | HarshPromptHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #08080d;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: min(900px, 92%);
+            margin: auto;
+            padding: 50px 0;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 35px;
+        }
+
+        .logo span {
+            opacity: .5;
+        }
+
+        .box {
+            background: #101019;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 16px 0 7px;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 14px;
+
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.12);
+
+            background: #08080d;
+            color: white;
+
+            outline: none;
+        }
+
+        textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        input[type="file"] {
+            padding: 12px;
+        }
+
+        button {
+            margin-top: 20px;
+
+            padding: 13px 22px;
+
+            border: none;
+            border-radius: 11px;
+
+            background: linear-gradient(135deg,#7c3cff,#ff2f92);
+
+            color: white;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: .9;
+        }
+
+        .logout {
+            background: #22222c;
+            margin-left: 8px;
+        }
+
+        .message {
+            margin-top: 15px;
+            color: #aaa;
+        }
+
+        #adminPanel {
+            display: none;
+        }
+
+        .preview {
+            max-width: 250px;
+            margin-top: 15px;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #aaa;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        Harsh<span>PromptHub</span>
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <div class="box" id="loginBox">
+
+        <h2>🔐 Admin Login</h2>
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Admin email"
+        >
+
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+        >
+
+
+        <button id="loginBtn">
+            Login
+        </button>
+
+
+        <p class="message" id="loginMessage"></p>
+
+    </div>
+
+
+
+    <!-- ADMIN PANEL -->
+
+    <div id="adminPanel">
+
+        <div class="box">
+
+            <h2>➕ Add New Prompt</h2>
+
+
+            <label>Prompt Title</label>
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Example: 15 August Cinematic Portrait"
+            >
+
+
+            <label>Category</label>
+
+            <select id="category">
+
+                <option value="Independence Day">
+                    Independence Day
+                </option>
+
+                <option value="Diwali">
+                    Diwali
+                </option>
+
+                <option value="Holi">
+                    Holi
+                </option>
+
+                <option value="Christmas">
+                    Christmas
+                </option>
+
+                <option value="Trending">
+                    Trending
+                </option>
+
+                <option value="Cinematic">
+                    Cinematic
+                </option>
+
+            </select>
+
+
+            <label>Description</label>
+
+            <input
+                type="text"
+                id="description"
+                placeholder="Short description"
+            >
+
+
+            <label>Sample Photo</label>
+
+            <input
+                type="file"
+                id="image"
+                accept="image/*"
+            >
+
+            <img
+                id="preview"
+                class="preview"
+            >
+
+
+            <label>AI Prompt</label>
+
+            <textarea
+                id="prompt"
+                placeholder="Paste your complete AI prompt here..."
+            ></textarea>
+
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="featured"
+                    style="width:auto;"
+                >
+                Featured / Trending
+            </label>
+
+
+            <button id="publishBtn">
+                🚀 Publish Prompt
+            </button>
+
+            <button
+                class="logout"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+
+            <p
+                class="message"
+                id="publishMessage"
+            ></p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← Back to HarshPromptHub
+    </a>
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+    /* ==============================
+       SUPABASE CONNECTION
+       ============================== */
+
+    const SUPABASE_URL =
+        "https://qtnjiyijgtsjfwqguynx.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_DImSiDCiNzPuXO8c54DPVg_uQFzbzAX";
+
+
+    const supabaseClient =
+        supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+
+    /* ==============================
+       ELEMENTS
+       ============================== */
+
+    const loginBox =
+        document.getElementById("loginBox");
+
+    const adminPanel =
+        document.getElementById("adminPanel");
+
+    const loginBtn =
+        document.getElementById("loginBtn");
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    const loginMessage =
+        document.getElementById("loginMessage");
+
+    const publishMessage =
+        document.getElementById("publishMessage");
+
+    const imageInput =
+        document.getElementById("image");
+
+    const preview =
+        document.getElementById("preview");
+
+
+
+    /* ==============================
+       IMAGE PREVIEW
+       ============================== */
+
+    imageInput.addEventListener(
+        "change",
+        function () {
+
+            const file = this.files[0];
+
+            if (!file) return;
+
+            preview.src =
+                URL.createObjectURL(file);
+
+            preview.style.display =
+                "block";
+        }
+    );
+
+
+
+    /* ==============================
+       LOGIN
+       ============================== */
+
+    loginBtn.addEventListener(
+        "click",
+        async function () {
+
+            const email =
+                document.getElementById("email").value;
+
+            const password =
+                document.getElementById("password").value;
+
+
+            loginMessage.innerText =
+                "Logging in...";
+
+
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+
+            if (error) {
+
+                loginMessage.innerText =
+                    "❌ " + error.message;
+
+                return;
+            }
+
+
+            loginMessage.innerText =
+                "";
+
+
+            loginBox.style.display =
+                "none";
+
+            adminPanel.style.display =
+                "block";
+        }
+    );
+
+
+
+    /* ==============================
+       LOGOUT
+       ============================== */
+
+    logoutBtn.addEventListener(
+        "click",
+        async function () {
+
+            await supabaseClient.auth.signOut();
+
+            adminPanel.style.display =
+                "none";
+
+            loginBox.style.display =
+                "block";
+        }
+    );
+
+
+
+    /* ==============================
+       PUBLISH PROMPT
+       ============================== */
+
+    document.getElementById("publishBtn")
+        .addEventListener(
+            "click",
+            async function () {
+
+                const title =
+                    document.getElementById("title").value.trim();
+
+                const category =
+                    document.getElementById("category").value;
+
+                const description =
+                    document.getElementById("description").value.trim();
+
+                const prompt =
+                    document.getElementById("prompt").value.trim();
+
+                const featured =
+                    document.getElementById("featured").checked;
+
+                const imageFile =
+                    imageInput.files[0];
+
+
+                if (
+                    !title ||
+                    !prompt ||
+                    !imageFile
+                ) {
+
+                    publishMessage.innerText =
+                        "⚠️ Title, photo aur prompt zaroori hain.";
+
+                    return;
+                }
+
+
+                publishMessage.innerText =
+                    "Uploading...";
+
+
+                /* IMAGE NAME */
+
+                const fileName =
+                    Date.now() +
+                    "-" +
+                    imageFile.name.replace(
+                        /[^a-zA-Z0-9.-]/g,
+                        "-"
+                    );
+
+
+                /* UPLOAD IMAGE */
+
+                const { error: uploadError } =
+                    await supabaseClient.storage
+                        .from("prompt-images")
+                        .upload(
+                            fileName,
+                            imageFile
+                        );
+
+
+                if (uploadError) {
+
+                   
