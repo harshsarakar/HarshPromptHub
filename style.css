@@ -1,1 +1,437 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #08080d;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 7%;
+
+    background: rgba(8, 8, 13, 0.92);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.logo span {
+    opacity: 0.55;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.menu-btn {
+    display: none;
+
+    border: none;
+    background: transparent;
+
+    color: white;
+    font-size: 25px;
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    background:
+        radial-gradient(circle at 50% 30%, rgba(124,60,255,0.18), transparent 40%);
+}
+
+.hero-content {
+    max-width: 780px;
+}
+
+.small-title {
+    color: #a98cff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    margin: 18px 0;
+
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.05;
+}
+
+.hero h1 span {
+    display: block;
+
+    background: linear-gradient(90deg, #a98cff, #ff4fa3);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto;
+
+    color: #aaa;
+    font-size: 17px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+
+    margin-top: 30px;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 13px 22px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.primary-btn {
+    color: white;
+    background: linear-gradient(135deg, #7c3cff, #ff2f92);
+}
+
+.secondary-btn {
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.04);
+}
+
+
+/* SEARCH */
+
+.search-section {
+    padding: 0 20px 70px;
+}
+
+.search-box {
+    max-width: 650px;
+    margin: auto;
+
+    display: flex;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+
+    background: #11111a;
+    overflow: hidden;
+}
+
+.search-box input {
+    flex: 1;
+
+    padding: 16px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: white;
+
+    font-size: 15px;
+}
+
+.search-box button {
+    width: 55px;
+
+    border: none;
+
+    background: #171722;
+    color: white;
+
+    font-size: 18px;
+}
+
+
+/* SECTIONS */
+
+.content-section,
+.about-section {
+    max-width: 1150px;
+    margin: auto;
+
+    padding: 80px 20px;
+}
+
+.section-heading {
+    max-width: 650px;
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    margin: 8px 0;
+
+    font-size: 34px;
+}
+
+.section-heading > p:last-child {
+    color: #999;
+}
+
+
+/* PROMPT CARDS */
+
+.prompt-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.prompt-card {
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+
+    background: #101019;
+}
+
+.prompt-image {
+    height: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 65px;
+}
+
+.placeholder {
+    background:
+        radial-gradient(circle, rgba(124,60,255,0.25), transparent 60%),
+        #151522;
+}
+
+.prompt-content {
+    padding: 22px;
+}
+
+.tag {
+    display: inline-block;
+
+    margin-bottom: 10px;
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: rgba(124,60,255,0.15);
+    color: #b99cff;
+
+    font-size: 11px;
+}
+
+.prompt-content h3 {
+    margin-bottom: 8px;
+}
+
+.prompt-content p {
+    color: #999;
+    font-size: 14px;
+}
+
+.read-btn {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* COLLECTIONS */
+
+.collection-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.collection-card {
+    padding: 28px 20px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+
+    background: #101019;
+
+    color: white;
+    text-decoration: none;
+}
+
+.collection-card span {
+    font-size: 35px;
+}
+
+.collection-card h3 {
+    margin-top: 15px;
+}
+
+.collection-card p {
+    color: #888;
+    font-size: 14px;
+}
+
+.coming-soon {
+    opacity: 0.65;
+}
+
+
+/* ABOUT */
+
+.about-section {
+    text-align: center;
+}
+
+.about-section .section-heading {
+    margin: auto;
+}
+
+
+/* FOOTER */
+
+.footer {
+    padding: 55px 20px 25px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer p {
+    color: #777;
+}
+
+.copyright {
+    margin-top: 25px;
+    font-size: 13px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        padding: 15px 20px;
+
+        background: #0b0b12;
+
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .prompt-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .collection-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .navbar {
+        padding: 16px 20px;
+    }
+
+    .hero {
+        min-height: 540px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .prompt-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .collection-grid {
+        grid-template-columns: 1fr;
+    }
+
+      }
