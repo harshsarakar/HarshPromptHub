@@ -11,6 +11,7 @@
         content="Create a cinematic 15 August Independence Day AI photo with this ready-to-use AI prompt.">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -28,6 +29,8 @@
             line-height: 1.6;
         }
 
+        /* NAVBAR */
+
         .navbar {
             position: sticky;
             top: 0;
@@ -39,7 +42,7 @@
 
             padding: 18px 7%;
 
-            background: rgba(8, 8, 13, 0.92);
+            background: rgba(8, 8, 13, 0.94);
             backdrop-filter: blur(12px);
 
             border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -66,6 +69,9 @@
             color: white;
         }
 
+
+        /* MAIN */
+
         .page {
             max-width: 900px;
             margin: auto;
@@ -74,6 +80,7 @@
 
         .category {
             display: inline-block;
+
             padding: 6px 12px;
 
             border-radius: 20px;
@@ -97,11 +104,16 @@
 
             color: #999;
             font-size: 17px;
+
             max-width: 700px;
         }
 
+
+        /* PREVIEW */
+
         .preview {
             min-height: 380px;
+
             margin-top: 40px;
 
             display: flex;
@@ -109,11 +121,20 @@
             justify-content: center;
 
             border-radius: 24px;
+
             border: 1px solid rgba(255,255,255,0.1);
 
             background:
-                radial-gradient(circle at 50% 35%, rgba(124,60,255,0.25), transparent 45%),
-                linear-gradient(135deg, #11111a, #151522);
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(124,60,255,0.25),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    135deg,
+                    #11111a,
+                    #151522
+                );
         }
 
         .preview-content {
@@ -129,6 +150,13 @@
             margin-top: 15px;
             font-size: 28px;
         }
+
+        .preview-content p {
+            color: #999;
+        }
+
+
+        /* PROMPT */
 
         .prompt-section {
             margin-top: 45px;
@@ -148,6 +176,7 @@
             background: #101019;
 
             color: #ccc;
+
             font-size: 15px;
         }
 
@@ -159,9 +188,14 @@
             border: none;
             border-radius: 12px;
 
-            background: linear-gradient(135deg, #7c3cff, #ff2f92);
+            background: linear-gradient(
+                135deg,
+                #7c3cff,
+                #ff2f92
+            );
 
             color: white;
+
             font-weight: bold;
             font-size: 14px;
 
@@ -172,5 +206,400 @@
             opacity: 0.9;
         }
 
+
+        /* TIPS */
+
         .tips {
-            margin-top: 
+            margin-top: 45px;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            background: #101019;
+
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tips h2 {
+            margin-bottom: 12px;
+        }
+
+        .tips p {
+            color: #999;
+        }
+
+
+        /* RELATED */
+
+        .related {
+            margin-top: 55px;
+        }
+
+        .related h2 {
+            margin-bottom: 20px;
+        }
+
+        .related-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .related-card {
+            padding: 22px;
+
+            border-radius: 18px;
+
+            background: #101019;
+
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .related-card span {
+            font-size: 30px;
+        }
+
+        .related-card h3 {
+            margin-top: 10px;
+        }
+
+        .related-card p {
+            margin-top: 6px;
+
+            color: #888;
+
+            font-size: 14px;
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+            padding: 50px 20px 25px;
+
+            text-align: center;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer p {
+            color: #777;
+        }
+
+        .copyright {
+            margin-top: 20px;
+
+            font-size: 13px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 16px 20px;
+            }
+
+            .page {
+                padding: 50px 18px;
+            }
+
+            .preview {
+                min-height: 300px;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <a href="../index.html" class="logo">
+            Harsh<span>PromptHub</span>
+        </a>
+
+        <a href="../index.html" class="back-btn">
+            ← Back to Home
+        </a>
+
+    </header>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="page">
+
+        <span class="category">
+            🇮🇳 Independence Day
+        </span>
+
+
+        <h1>
+            15 August AI Photo Editing Prompt
+        </h1>
+
+
+        <p class="intro">
+            Create a cinematic and patriotic Independence Day
+            portrait using this ready-to-use AI photo prompt.
+        </p>
+
+
+
+        <!-- PREVIEW -->
+
+        <div class="preview">
+
+            <div class="preview-content">
+
+                <div class="flag">
+                    🇮🇳
+                </div>
+
+                <h2>
+                    15 August Special
+                </h2>
+
+                <p>
+                    Independence Day AI Portrait
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROMPT -->
+
+        <section class="prompt-section">
+
+            <h2>
+                ✨ AI Photo Prompt
+            </h2>
+
+
+            <div class="prompt-box" id="promptText">
+
+                Create an ultra-realistic cinematic portrait using
+                the uploaded photo as the main identity reference.
+                Preserve the person's facial identity, natural face
+                structure, skin tone and hairstyle. Create a
+                patriotic Indian Independence Day atmosphere with
+                a beautiful Indian tricolor theme, subtle saffron,
+                white and green lighting, a soft Indian flag inspired
+                background, cinematic photography, realistic skin
+                texture, dramatic but natural lighting, detailed
+                eyes, sharp facial details, premium portrait
+                photography, shallow depth of field, realistic
+                shadows, high detail, 4K quality and a professional
+                Instagram-ready composition. Keep the result
+                realistic and avoid an artificial or overly edited
+                appearance.
+
+            </div>
+
+
+            <button class="copy-btn" id="copyBtn">
+                📋 Copy Prompt
+            </button>
+
+        </section>
+
+
+
+        <!-- HOW TO USE -->
+
+        <section class="tips">
+
+            <h2>
+                💡 How to use
+            </h2>
+
+            <p>
+                Upload your clear photo to your preferred AI image
+                generator, paste the prompt and generate your
+                Independence Day portrait. For the best result,
+                use a clear front-facing photo with good lighting.
+            </p>
+
+        </section>
+
+
+
+        <!-- RELATED PROMPTS -->
+
+        <section class="related">
+
+            <h2>
+                🔥 More 15 August Prompts
+            </h2>
+
+
+            <div class="related-grid">
+
+
+                <div class="related-card">
+
+                    <span>🇮🇳</span>
+
+                    <h3>
+                        Tricolor Portrait
+                    </h3>
+
+                    <p>
+                        Coming soon — patriotic tricolor
+                        portrait prompt.
+                    </p>
+
+                </div>
+
+
+
+                <div class="related-card">
+
+                    <span>📸</span>
+
+                    <h3>
+                        15 August DP Prompt
+                    </h3>
+
+                    <p>
+                        Coming soon — Independence Day
+                        Instagram DP prompt.
+                    </p>
+
+                </div>
+
+
+
+                <div class="related-card">
+
+                    <span>✨</span>
+
+                    <h3>
+                        Cinematic Flag Portrait
+                    </h3>
+
+                    <p>
+                        Coming soon — cinematic Indian
+                        flag themed portrait.
+                    </p>
+
+                </div>
+
+
+
+                <div class="related-card">
+
+                    <span>🔥</span>
+
+                    <h3>
+                        Patriotic Instagram Photo
+                    </h3>
+
+                    <p>
+                        Coming soon — trending patriotic
+                        photo prompt.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <h2>
+            HarshPromptHub
+        </h2>
+
+        <p>
+            Creative AI photo prompts for every occasion.
+        </p>
+
+        <p class="copyright">
+            © 2026 HarshPromptHub. All rights reserved.
+        </p>
+
+    </footer>
+
+
+
+    <!-- COPY PROMPT -->
+
+    <script>
+
+        const copyBtn = document.getElementById("copyBtn");
+
+        const promptText = document.getElementById("promptText");
+
+
+        copyBtn.addEventListener("click", async () => {
+
+            const text = promptText.innerText.trim();
+
+            try {
+
+                await navigator.clipboard.writeText(text);
+
+                copyBtn.innerText = "✅ Prompt Copied!";
+
+                setTimeout(() => {
+
+                    copyBtn.innerText = "📋 Copy Prompt";
+
+                }, 2000);
+
+            }
+
+            catch (error) {
+
+                copyBtn.innerText = "❌ Copy Failed";
+
+                setTimeout(() => {
+
+                    copyBtn.innerText = "📋 Copy Prompt";
+
+                }, 2000);
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+    </html>
