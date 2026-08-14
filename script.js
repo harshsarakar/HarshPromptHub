@@ -96,3 +96,110 @@ if (searchInput) {
     );
 
 } 
+// =====================================
+// SUPABASE - LOAD PUBLISHED PROMPTS
+// =====================================
+
+const SUPABASE_URL =
+    "https://qtnjiyijgtsjfwqguynx.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_DImSiDCiNzPuXO8c54DPVg_uQFzbzAX";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+// Load prompts from database
+async function loadPrompts() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("prompts")
+            .select("*")
+            .order("created_at", {
+                ascending: false
+            });
+
+    if (error) {
+        console.error(
+            "Prompt loading error:",
+            error
+        );
+        return;
+    }
+
+    const grid =
+        document.querySelector(".prompt-grid");
+
+    if (!grid || !data) return;
+
+
+    grid.innerHTML = "";
+
+
+    data.forEach(prompt => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "prompt-card";
+
+
+        card.innerHTML = `
+
+            <div class="prompt-image">
+
+                <img
+                    src="${prompt.image_url || ""}"
+                    alt="${prompt.title}"
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                    "
+                >
+
+            </div>
+
+
+            <div class="prompt-content">
+
+                <span class="tag">
+                    ${prompt.category}
+                </span>
+
+                <h3>
+                    ${prompt.title}
+                </h3>
+
+                <p>
+                    ${prompt.description || ""}
+                </p>
+
+                <a
+                    href="#"
+                    class="read-btn"
+                    onclick="return false;"
+                >
+                    View Prompt →
+                </a>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+// Start loading
+loadPrompts();
