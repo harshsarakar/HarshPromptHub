@@ -161,10 +161,11 @@ async function loadPrompts() {
                 <img
                     src="${prompt.image_url || ""}"
                     alt="${prompt.title}"
-                    style="
-                        width:100%;
-                        height:100%;
-                        object-fit:cover;
+                   style="
+                          width:100%;
+                          height:100%;
+                          object-fit:contain;
+                          display:block;
                     "
                 >
 
