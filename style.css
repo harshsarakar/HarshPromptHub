@@ -244,13 +244,23 @@ body {
 }
 
 .prompt-image {
-    height: 220px;
+    min-height: 220px;
+    max-height: 420px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 65px;
+    background: #151522;
+    overflow: hidden;
+}
+
+.prompt-image img {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+    display: block;
 }
 
 .placeholder {
