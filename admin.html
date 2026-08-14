@@ -513,8 +513,82 @@
                             imageFile
                         );
 
-
                 if (uploadError) {
 
-           </body>
+                    publishMessage.innerText =
+                        "❌ Image upload error: " +
+                        uploadError.message;
+
+                    return;
+                }
+
+
+                /* IMAGE URL */
+
+                const { data: imageData } =
+                    supabaseClient.storage
+                        .from("prompt-images")
+                        .getPublicUrl(fileName);
+
+
+                const imageUrl =
+                    imageData.publicUrl;
+
+
+                /* SAVE PROMPT */
+
+                const { error: insertError } =
+                    await supabaseClient
+                        .from("prompts")
+                        .insert({
+
+                            title: title,
+
+                            category: category,
+
+                            description: description,
+
+                            prompt: prompt,
+
+                            image_url: imageUrl,
+
+                            featured: featured
+
+                        });
+
+
+                if (insertError) {
+
+                    publishMessage.innerText =
+                        "❌ Database error: " +
+                        insertError.message;
+
+                    return;
+                }
+
+
+                publishMessage.innerText =
+                    "✅ Prompt successfully published!";
+
+
+                /* CLEAR FORM */
+
+                document.getElementById("title").value = "";
+
+                document.getElementById("description").value = "";
+
+                document.getElementById("prompt").value = "";
+
+                document.getElementById("featured").checked = false;
+
+                imageInput.value = "";
+
+                preview.style.display = "none";
+
+            }
+        );
+
+</script>
+
+</body>
 </html>
