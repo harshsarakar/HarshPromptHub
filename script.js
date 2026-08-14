@@ -187,12 +187,11 @@ async function loadPrompts() {
                 </p>
 
                 <a
-                    href="#"
-                    class="read-btn"
-                    onclick="return false;"
-                >
-                    View Prompt →
-                </a>
+                   href="prompt.html?id=${prompt.id}"
+                   class="read-btn"
+>
+    View Prompt →
+</a>
 
             </div>
 
