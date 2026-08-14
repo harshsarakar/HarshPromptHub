@@ -125,11 +125,15 @@ async function loadPrompts() {
             });
 
     if (error) {
-        console.error(
-            "Prompt loading error:",
-            error
-        );
-        return;
+
+    alert(
+        "Database Error: " +
+        error.message
+    );
+
+    console.error(error);
+
+    return;
     }
 
     const grid =
@@ -203,3 +207,5 @@ async function loadPrompts() {
 
 // Start loading
 loadPrompts();
+
+console.log("HarshPromptHub JS loaded");
