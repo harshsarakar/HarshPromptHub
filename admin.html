@@ -455,7 +455,95 @@
         }
     );
 
+/* ==============================
+   MANAGE PROMPTS
+   ============================== */
 
+async function loadAdminPrompts() {
+
+    const container =
+        document.getElementById("adminPrompts");
+
+    container.innerHTML =
+        "Loading prompts...";
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("prompts")
+            .select("*")
+            .order("created_at", {
+                ascending: false
+            });
+
+
+    if (error) {
+
+        container.innerHTML =
+            "❌ " + error.message;
+
+        console.error(error);
+
+        return;
+    }
+
+
+    if (!data || data.length === 0) {
+
+        container.innerHTML =
+            "No prompts found.";
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    data.forEach(prompt => {
+
+        const item =
+            document.createElement("div");
+
+        item.style.cssText = `
+            padding:15px;
+            margin-top:12px;
+            border:1px solid rgba(255,255,255,.1);
+            border-radius:12px;
+            background:#08080d;
+        `;
+
+
+        item.innerHTML = `
+
+            <strong>
+                ${prompt.title || "Untitled"}
+            </strong>
+
+            <div style="
+                color:#999;
+                font-size:13px;
+                margin-top:6px;
+            ">
+                ${prompt.category || "No category"}
+            </div>
+
+            <div style="
+                color:#777;
+                font-size:12px;
+                margin-top:5px;
+            ">
+                ${prompt.featured ? "⭐ Featured" : ""}
+            </div>
+
+        `;
+
+
+        container.appendChild(item);
+
+    });
+
+    }
 
     /* ==============================
        PUBLISH PROMPT
