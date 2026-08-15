@@ -638,13 +638,12 @@ async function loadAdminPrompts() {
     const featured =
         document.getElementById("featured").checked;
 
+                    if (!title || !prompt) {
 
-    if (!title || !prompt) {
+    publishMessage.innerText =
+        "⚠️ Title aur prompt zaroori hain.";
 
-        publishMessage.innerText =
-            "⚠️ Title aur prompt zaroori hain.";
-
-        return;
+    return;
     }
 
 
