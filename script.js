@@ -144,7 +144,8 @@ async function loadPrompts() {
 
     grid.innerHTML = "";
 
-
+createCategoryFilters(data);
+    
     data.forEach(prompt => {
 
         const card =
