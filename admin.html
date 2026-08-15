@@ -560,6 +560,54 @@ async function loadAdminPrompts() {
     });
 
     }
+    async function editPrompt(id) {
+
+    const { data, error } =
+        await supabaseClient
+            .from("prompts")
+            .select("*")
+            .eq("id", id)
+            .single();
+
+    if (error) {
+        alert("❌ Prompt load nahi hua: " + error.message);
+        return;
+    }
+
+    document.getElementById("title").value =
+        data.title || "";
+
+    document.getElementById("category").value =
+        data.category || "";
+
+    document.getElementById("description").value =
+        data.description || "";
+
+    document.getElementById("prompt").value =
+        data.prompt || "";
+
+    document.getElementById("featured").checked =
+        data.featured === true;
+
+    if (data.image_url) {
+        preview.src = data.image_url;
+        preview.style.display = "block";
+    }
+
+    document.getElementById("publishMessage").innerText =
+        "✏️ Editing: " + (data.title || "Prompt");
+
+    window.editingPromptId = id;
+
+    document.getElementById("publishBtn").innerText =
+        "💾 Update Prompt";
+
+    document
+        .getElementById("title")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+    }
 
     /* ==============================
        PUBLISH PROMPT
