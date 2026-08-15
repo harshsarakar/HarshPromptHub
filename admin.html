@@ -618,6 +618,78 @@ async function loadAdminPrompts() {
             "click",
             async function () {
 
+                if (window.editingPromptId) {
+
+    const id =
+        window.editingPromptId;
+
+    const title =
+        document.getElementById("title").value.trim();
+
+    const category =
+        document.getElementById("category").value;
+
+    const description =
+        document.getElementById("description").value.trim();
+
+    const prompt =
+        document.getElementById("prompt").value.trim();
+
+    const featured =
+        document.getElementById("featured").checked;
+
+
+    if (!title || !prompt) {
+
+        publishMessage.innerText =
+            "⚠️ Title aur prompt zaroori hain.";
+
+        return;
+    }
+
+
+    publishMessage.innerText =
+        "Updating...";
+
+
+    const { error } =
+        await supabaseClient
+            .from("prompts")
+            .update({
+                title: title,
+                category: category,
+                description: description,
+                prompt: prompt,
+                featured: featured
+            })
+            .eq("id", id);
+
+
+    if (error) {
+
+        publishMessage.innerText =
+            "❌ Update error: " +
+            error.message;
+
+        return;
+    }
+
+
+    publishMessage.innerText =
+        "✅ Prompt successfully updated!";
+
+
+    window.editingPromptId = null;
+
+    document.getElementById("publishBtn").innerText =
+        "🚀 Publish Prompt";
+
+
+    loadAdminPrompts();
+
+    return;
+    }
+
                 const title =
                     document.getElementById("title").value.trim();
 
