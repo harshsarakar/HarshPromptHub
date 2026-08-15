@@ -204,6 +204,101 @@ createCategoryFilters(data);
     });
 
 }
+function createCategoryFilters(prompts) {
+
+    const container =
+        document.getElementById("categoryFilters");
+
+    if (!container) return;
+
+    const categories = [
+        ...new Set(
+            prompts
+                .map(prompt => prompt.category)
+                .filter(Boolean)
+        )
+    ];
+
+    container.innerHTML = "";
+
+    // ALL button
+    const allButton =
+        document.createElement("button");
+
+    allButton.className =
+        "category-filter active";
+
+    allButton.textContent =
+        "All";
+
+    allButton.onclick = () => {
+
+        document
+            .querySelectorAll(".prompt-card")
+            .forEach(card => {
+                card.style.display = "";
+            });
+
+        document
+            .querySelectorAll(".category-filter")
+            .forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+        allButton.classList.add("active");
+    };
+
+    container.appendChild(allButton);
+
+
+    // Category buttons
+    categories.forEach(category => {
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "category-filter";
+
+        button.textContent =
+            category;
+
+        button.onclick = () => {
+
+            document
+                .querySelectorAll(".prompt-card")
+                .forEach(card => {
+
+                    const cardCategory =
+                        card
+                            .querySelector(".tag")
+                            ?.textContent
+                            .trim();
+
+                    if (
+                        cardCategory === category
+                    ) {
+                        card.style.display = "";
+                    } else {
+                        card.style.display = "none";
+                    }
+
+                });
+
+
+            document
+                .querySelectorAll(".category-filter")
+                .forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+            button.classList.add("active");
+        };
+
+        container.appendChild(button);
+
+    });
+            }
 
 
 // Start loading
