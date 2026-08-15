@@ -280,7 +280,7 @@
     </main>
 
 
-    <!-- FOOTER -->
+        <!-- FOOTER -->
 
     <footer class="footer">
 
@@ -295,125 +295,149 @@
         </p>
 
     </footer>
-    
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- MAIN JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- COLLECTIONS -->
+
     <script>
 
     async function loadCollections() {
 
-    const grid =
-        document.getElementById("collectionGrid");
+        const grid =
+            document.getElementById("collectionGrid");
 
-    const loading =
-        document.getElementById("collectionLoading");
+        const loading =
+            document.getElementById("collectionLoading");
 
-    if (!grid) return;
-
-
-    const { data, error } =
-        await supabaseClient
-            .from("categories")
-            .select("*")
-            .order("created_at", {
-                ascending: true
-            });
+        if (!grid) return;
 
 
-    if (error) {
-
-        console.error(
-            "Categories loading error:",
-            error
-        );
-
-        if (loading) {
-            loading.textContent =
-                "Collections load nahi ho pa rahi.";
-        }
-
-        return;
-    }
+        const { data, error } =
+            await supabaseClient
+                .from("categories")
+                .select("*")
+                .order("created_at", {
+                    ascending: true
+                });
 
 
-    if (loading) {
-        loading.remove();
-    }
+        if (error) {
 
-
-    data.forEach(category => {
-
-        const card =
-            document.createElement(
-                category.active ? "a" : "div"
+            console.error(
+                "Categories loading error:",
+                error
             );
 
+            if (loading) {
+                loading.textContent =
+                    "Collections load nahi ho pa rahi.";
+            }
 
-        card.className =
-            "collection-card";
+            return;
+        }
 
 
-        if (category.active) {
+        if (loading) {
+            loading.remove();
+        }
 
-            if (category.name === "Independence Day") {
 
-                card.href =
-                    "prompts/independence-day.html";
+        data.forEach(category => {
 
-            } else if (category.name === "Trending") {
+            const card =
+                document.createElement(
+                    category.active ? "a" : "div"
+                );
 
-                card.href =
-                    "prompts/trending.html";
 
-            } else if (category.name === "Cinematic") {
+            card.className =
+                "collection-card";
 
-                card.href =
-                    "prompts/cinematic.html";
+
+            if (category.active) {
+
+                if (
+                    category.name ===
+                    "Independence Day"
+                ) {
+
+                    card.href =
+                        "prompts/independence-day.html";
+
+                }
+
+                else if (
+                    category.name === "Trending"
+                ) {
+
+                    card.href =
+                        "prompts/trending.html";
+
+                }
+
+                else if (
+                    category.name === "Cinematic"
+                ) {
+
+                    card.href =
+                        "prompts/cinematic.html";
+
+                }
 
             }
 
-        } else {
+            else {
 
-            card.classList.add(
-                "coming-soon"
-            );
+                card.classList.add(
+                    "coming-soon"
+                );
 
-        }
-
-
-        card.innerHTML = `
-
-            <span>
-                ${category.emoji || "📁"}
-            </span>
-
-            <h3>
-                ${category.name}
-            </h3>
-
-            <p>
-                ${
-                    category.active
-                    ? category.description || "Explore prompts"
-                    : "Coming soon"
-                }
-            </p>
-
-        `;
+            }
 
 
-        grid.appendChild(card);
+            card.innerHTML = `
 
-    });
+                <span>
+                    ${category.emoji || "📁"}
+                </span>
 
-}
+                <h3>
+                    ${category.name}
+                </h3>
+
+                <p>
+                    ${
+                        category.active
+                        ? category.description ||
+                          "Explore prompts"
+                        : "Coming soon"
+                    }
+                </p>
+
+            `;
 
 
-loadCollections();
+            grid.appendChild(card);
 
-        <script>
-    
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script.js"></script>
+        });
+
+    }
+
+
+    loadCollections();
+
+    </script>
+
 
 </body>
 
-      </html>
+        </html>
