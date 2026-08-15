@@ -296,6 +296,117 @@
 
     </footer>
 
+    async function loadCollections() {
+
+    const grid =
+        document.getElementById("collectionGrid");
+
+    const loading =
+        document.getElementById("collectionLoading");
+
+    if (!grid) return;
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("categories")
+            .select("*")
+            .order("created_at", {
+                ascending: true
+            });
+
+
+    if (error) {
+
+        console.error(
+            "Categories loading error:",
+            error
+        );
+
+        if (loading) {
+            loading.textContent =
+                "Collections load nahi ho pa rahi.";
+        }
+
+        return;
+    }
+
+
+    if (loading) {
+        loading.remove();
+    }
+
+
+    data.forEach(category => {
+
+        const card =
+            document.createElement(
+                category.active ? "a" : "div"
+            );
+
+
+        card.className =
+            "collection-card";
+
+
+        if (category.active) {
+
+            if (category.name === "Independence Day") {
+
+                card.href =
+                    "prompts/independence-day.html";
+
+            } else if (category.name === "Trending") {
+
+                card.href =
+                    "prompts/trending.html";
+
+            } else if (category.name === "Cinematic") {
+
+                card.href =
+                    "prompts/cinematic.html";
+
+            }
+
+        } else {
+
+            card.classList.add(
+                "coming-soon"
+            );
+
+        }
+
+
+        card.innerHTML = `
+
+            <span>
+                ${category.emoji || "📁"}
+            </span>
+
+            <h3>
+                ${category.name}
+            </h3>
+
+            <p>
+                ${
+                    category.active
+                    ? category.description || "Explore prompts"
+                    : "Coming soon"
+                }
+            </p>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+loadCollections();
+    
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 
