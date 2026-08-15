@@ -202,4 +202,164 @@
                 );
 
             const id =
-               
+                params.get("id");
+
+
+            if (!id) {
+
+                showError(
+                    "Prompt ID nahi mila."
+                );
+
+                return;
+            }
+
+
+            const { data, error } =
+                await supabaseClient
+                    .from("prompts")
+                    .select("*")
+                    .eq("id", id)
+                    .single();
+
+
+            if (error) {
+
+                console.error(
+                    "Prompt loading error:",
+                    error
+                );
+
+                showError(
+                    "Prompt load nahi ho pa raha. Internet connection check karke dobara try karein."
+                );
+
+                return;
+            }
+
+
+            if (!data) {
+
+                showError(
+                    "Prompt nahi mila."
+                );
+
+                return;
+            }
+
+
+            document.getElementById(
+                "promptImage"
+            ).src =
+                data.image_url || "";
+
+
+            document.getElementById(
+                "promptImage"
+            ).alt =
+                data.title || "AI Prompt";
+
+
+            document.getElementById(
+                "promptCategory"
+            ).textContent =
+                data.category || "AI Prompt";
+
+
+            document.getElementById(
+                "promptTitle"
+            ).textContent =
+                data.title || "Untitled Prompt";
+
+
+            document.getElementById(
+                "promptDescription"
+            ).textContent =
+                data.description || "";
+
+
+            document.getElementById(
+                "promptText"
+            ).textContent =
+                data.prompt || "";
+
+
+            document.getElementById(
+                "loading"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "promptContent"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "copyPrompt"
+            ).addEventListener(
+                "click",
+                async function() {
+
+                    try {
+
+                        await navigator.clipboard.writeText(
+                            data.prompt
+                        );
+
+                        this.textContent =
+                            "✅ Copied!";
+
+                        setTimeout(() => {
+
+                            this.textContent =
+                                "📋 Copy Prompt";
+
+                        }, 2000);
+
+                    } catch (copyError) {
+
+                        this.textContent =
+                            "Copy failed";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        function showError(message) {
+
+            document.getElementById(
+                "loading"
+            ).style.display =
+                "none";
+
+
+            const errorBox =
+                document.getElementById(
+                    "error"
+                );
+
+
+            errorBox.textContent =
+                message;
+
+
+            errorBox.style.display =
+                "block";
+
+        }
+
+
+        loadPrompt();
+
+    </script>
+
+</body>
+
+                    </html>
+            
