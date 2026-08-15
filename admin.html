@@ -608,6 +608,39 @@ async function loadAdminPrompts() {
             behavior: "smooth"
         });
     }
+    async function deletePrompt(id) {
+
+    const confirmDelete =
+        confirm(
+            "⚠️ Kya tum is prompt ko permanently delete karna chahte ho?"
+        );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    const { error } =
+        await supabaseClient
+            .from("prompts")
+            .delete()
+            .eq("id", id);
+
+    if (error) {
+
+        alert(
+            "❌ Delete error: " +
+            error.message
+        );
+
+        return;
+    }
+
+    alert(
+        "✅ Prompt successfully deleted!"
+    );
+
+    loadAdminPrompts();
+    }
 
     /* ==============================
        PUBLISH PROMPT
