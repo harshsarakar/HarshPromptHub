@@ -445,3 +445,26 @@ body {
     }
 
       }
+.category-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 25px 0 30px;
+}
+
+.category-filter {
+    padding: 10px 18px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 25px;
+    background: #15151f;
+    color: #aaa;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.category-filter:hover,
+.category-filter.active {
+    background: linear-gradient(135deg, #7c3cff, #ff2f92);
+    color: white;
+    border-color: transparent;
+}
