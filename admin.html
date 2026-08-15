@@ -518,27 +518,41 @@ async function loadAdminPrompts() {
 
         item.innerHTML = `
 
-            <strong>
-                ${prompt.title || "Untitled"}
-            </strong>
+    <strong>
+        ${prompt.title || "Untitled"}
+    </strong>
 
-            <div style="
-                color:#999;
-                font-size:13px;
-                margin-top:6px;
-            ">
-                ${prompt.category || "No category"}
-            </div>
+    <div style="
+        color:#999;
+        font-size:13px;
+        margin-top:6px;
+    ">
+        ${prompt.category || "No category"}
+    </div>
 
-            <div style="
-                color:#777;
-                font-size:12px;
-                margin-top:5px;
-            ">
-                ${prompt.featured ? "⭐ Featured" : ""}
-            </div>
+    <div style="
+        color:#777;
+        font-size:12px;
+        margin-top:5px;
+    ">
+        ${prompt.featured ? "⭐ Featured" : ""}
+    </div>
 
-        `;
+    <button
+        onclick="editPrompt('${prompt.id}')"
+        style="margin-right:8px;"
+    >
+        ✏️ Edit
+    </button>
+
+    <button
+        onclick="deletePrompt('${prompt.id}')"
+        style="background:#7d2020;"
+    >
+        🗑️ Delete
+    </button>
+
+`;
 
 
         container.appendChild(item);
