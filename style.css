@@ -513,3 +513,24 @@ body {
     border-radius: 18px;
     margin: 0 auto;
         }
+
+/* PROMPT SHOW MORE */
+
+.prompt-text.collapsed {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.show-more-prompt {
+    display: block;
+    margin-top: 10px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #777;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
