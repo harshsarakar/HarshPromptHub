@@ -502,3 +502,14 @@ body {
 .related-card:hover img {
     transform: scale(1.02);
 }
+
+        /* PROMPT DETAIL IMAGE SIZE */
+
+#promptImage {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+    border-radius: 18px;
+    margin: 0 auto;
+        }
