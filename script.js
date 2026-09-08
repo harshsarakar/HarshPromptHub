@@ -160,7 +160,10 @@ createCategoryFilters(data);
 
         card.className =
             "prompt-card";
-
+        
+card.dataset.tags = Array.isArray(prompt.tags)
+    ? prompt.tags.join(" ")
+    : (prompt.tags || "");
 
         card.innerHTML = `
 
