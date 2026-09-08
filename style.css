@@ -316,7 +316,7 @@ body {
 @media (max-width: 480px) {
 
     .collection-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr 1fr;
     }
 
 }
