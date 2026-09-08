@@ -675,7 +675,12 @@ async function loadAdminPrompts() {
         document.getElementById("prompt").value.trim();
 
     const featured =
-        document.getElementById("featured").checked;
+        document.getElementById("featured").checked:
+
+     const tags = document.getElementById("tags").value
+       .split(",")
+       .map(tag => tag.trim())
+       .filter(Boolean);
 
                     if (!title || !prompt) {
 
@@ -698,7 +703,8 @@ async function loadAdminPrompts() {
                 category: category,
                 description: description,
                 prompt: prompt,
-                featured: featured
+                featured: featured,
+                tags: tags
             })
             .eq("id", id);
 
@@ -742,6 +748,11 @@ async function loadAdminPrompts() {
 
                 const featured =
                     document.getElementById("featured").checked;
+
+                const tags = document.getElementById("tags").value
+    .split(",")
+    .map(tag => tag.trim())
+    .filter(Boolean);
 
                 const imageFile =
                     imageInput.files[0];
@@ -825,6 +836,8 @@ async function loadAdminPrompts() {
                             image_url: imageUrl,
 
                             featured: featured,
+
+                            tags: tags
 
                         });
 
