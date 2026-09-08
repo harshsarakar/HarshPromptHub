@@ -364,7 +364,49 @@
                 "block";
 
         }
+        
+async function loadRelatedPrompts(category, currentId) {
 
+    const container = document.getElementById("relatedPrompts");
+
+    const { data, error } = await supabaseClient
+        .from("prompts")
+        .select("id, title, image_url, category")
+        .eq("category", category)
+        .neq("id", currentId)
+        .order("created_at", { ascending: false })
+        .limit(6);
+
+    if (error) {
+        console.error("Related prompts error:", error);
+        container.innerHTML = "<p>Related prompts load nahi ho paaye.</p>";
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        container.innerHTML = "<p>No related prompts yet.</p>";
+        return;
+    }
+
+    container.innerHTML = "";
+
+    data.forEach(prompt => {
+
+        const card = document.createElement("a");
+
+        card.href = "prompt.html?id=" + prompt.id;
+        card.className = "related-card";
+
+        card.innerHTML = `
+            <img
+                src="${prompt.image_url || ""}"
+                alt="${prompt.title || "AI Prompt"}"
+            >
+        `;
+
+        container.appendChild(card);
+    });
+                              }
 
         loadPrompt();
 
