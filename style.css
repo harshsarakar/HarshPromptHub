@@ -517,10 +517,12 @@ body {
 /* PROMPT SHOW MORE */
 
 .prompt-text.collapsed {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    max-height: 72px !important;
+    overflow: hidden !important;
+}
+
+.prompt-text {
+    box-sizing: border-box;
 }
 
 .show-more-prompt {
