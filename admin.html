@@ -466,6 +466,28 @@
         }
     );
 
+    document.getElementById("editPromptsBtn").addEventListener("click", function () {
+
+    const managePrompts =
+        document.getElementById("managePrompts");
+
+    if (managePrompts.style.display === "none") {
+
+        managePrompts.style.display = "block";
+
+        this.innerText = "✖️ Close Edit Prompts";
+
+        loadAdminPrompts();
+
+    } else {
+
+        managePrompts.style.display = "none";
+
+        this.innerText = "✏️ Edit Prompts";
+    }
+
+});
+
 /* ==============================
    MANAGE PROMPTS
    ============================== */
