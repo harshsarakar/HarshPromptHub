@@ -294,10 +294,29 @@
                 data.description || "";
 
 
-            document.getElementById(
-                "promptText"
-            ).textContent =
-                data.prompt || "";
+            const promptText =
+    document.getElementById("promptText");
+
+const showMoreBtn =
+    document.getElementById("showMorePrompt");
+
+promptText.textContent =
+    data.prompt || "";
+
+// Start with only 1 line
+promptText.classList.add("collapsed");
+
+showMoreBtn.addEventListener("click", function() {
+
+    promptText.classList.toggle("collapsed");
+
+    if (promptText.classList.contains("collapsed")) {
+        this.textContent = "Show more";
+    } else {
+        this.textContent = "Show less";
+    }
+
+});
 
 
             document.getElementById(
