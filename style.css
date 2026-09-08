@@ -229,13 +229,13 @@ body {
 .prompt-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 8px;
     align-items: start;
 }
 
 .prompt-card {
     overflow: hidden;
-    border-radius: 18px;
+    border-radius: 14px;
     background: transparent;
 }
 
