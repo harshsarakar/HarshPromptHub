@@ -466,28 +466,7 @@
         }
     );
 
-    document.getElementById("editPromptsBtn").addEventListener("click", function () {
-
-    const managePrompts =
-        document.getElementById("managePrompts");
-
-    if (managePrompts.style.display === "none") {
-
-        managePrompts.style.display = "block";
-
-        this.innerText = "✖️ Close Edit Prompts";
-
-        loadAdminPrompts();
-
-    } else {
-
-        managePrompts.style.display = "none";
-
-        this.innerText = "✏️ Edit Prompts";
-    }
-
-});
-
+    
 /* ==============================
    MANAGE PROMPTS
    ============================== */
@@ -898,6 +877,23 @@ async function loadAdminPrompts() {
             }
         );
 
+function toggleManagePrompts() {
+
+    const section =
+        document.getElementById("managePrompts");
+
+    if (section.style.display === "none") {
+
+        section.style.display = "block";
+
+        loadAdminPrompts();
+
+    } else {
+
+        section.style.display = "none";
+    }
+            }
+    
 </script>
 
 </body>
