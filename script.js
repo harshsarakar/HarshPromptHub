@@ -49,7 +49,15 @@ function searchPrompts() {
         const text =
             card.innerText.toLowerCase();
 
-        if (text.includes(query)) {
+        const promptTags =
+            card.dataset.tags
+                ? card.dataset.tags.toLowerCase()
+                : "";
+
+        if (
+            text.includes(query) ||
+            promptTags.includes(query)
+        ) {
 
             card.style.display = "";
 
@@ -61,7 +69,6 @@ function searchPrompts() {
 
     });
 
-    // Trending section tak le jao
     document
         .getElementById("trending")
         ?.scrollIntoView({
