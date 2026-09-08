@@ -157,46 +157,13 @@ createCategoryFilters(data);
 
         card.innerHTML = `
 
-            <div class="prompt-image">
-
-                <img
-                    src="${prompt.image_url || ""}"
-                    alt="${prompt.title}"
-                   style="
-                          width:100%;
-                          height:100%;
-                          object-fit:contain;
-                          display:block;
-                    "
-                >
-
-            </div>
-
-
-            <div class="prompt-content">
-
-                <span class="tag">
-                    ${prompt.category}
-                </span>
-
-                <h3>
-                    ${prompt.title}
-                </h3>
-
-                <p>
-                    ${prompt.description || ""}
-                </p>
-
-                <a
-                   href="prompt.html?id=${prompt.id}"
-                   class="read-btn"
->
-    View Prompt →
+         <a href="prompt.html?id=${prompt.id}" class="prompt-image">
+    <img
+        src="${prompt.image_url || ""}"
+        alt="${prompt.title || "AI Prompt"}"
+    >
 </a>
-
-            </div>
-
-        `;
+ `;
 
 
         grid.appendChild(card);
